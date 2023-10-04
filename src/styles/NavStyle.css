@@ -1,0 +1,24 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.app-header{
+    background-color: black;
+    font-size: 12px;
+}
+.app-header-content{
+    width: 75%;
+    margin: auto auto;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0px;
+}
+
+.login-logout-div{
+    display:flex;
+    gap:10px;
+    margin-right: 20px;
+}
+
