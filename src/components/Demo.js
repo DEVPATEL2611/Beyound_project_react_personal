@@ -41,7 +41,7 @@ function SwipeableTextMobileStepper() {
         onChangeIndex={handleStepChange}
         enableMouseEvents
       >
-        {images.map((step, index) => (
+        {(images.map((step, index) => (
           <div key={step.label}>
             {Math.abs(activeStep - index) <= 2 ? (
               <Box
@@ -59,7 +59,7 @@ function SwipeableTextMobileStepper() {
               />
             ) : null}
           </div>
-        ))}
+        )))}
       </AutoPlaySwipeableViews>
       <MobileStepper
         steps={maxSteps}
