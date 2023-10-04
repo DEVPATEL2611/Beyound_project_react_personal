@@ -19,6 +19,17 @@ const images = [
   },
   
 ];
+const imagess = [
+    {
+      imgPath:
+        'https://www.beyoung.in/api/catalog/home-19-8-23/new/combo-banner-mobile-view1.jpg',
+    },
+    {
+      imgPath:
+        'https://www.beyoung.in/api/catalog/home-19-8-23/new/Bo1xer-home-page-banner-mobile-view.jpg',
+    },
+    
+  ];
 
 function SwipeableTextMobileStepper() {
   const theme = useTheme();
@@ -41,7 +52,7 @@ function SwipeableTextMobileStepper() {
         onChangeIndex={handleStepChange}
         enableMouseEvents
       >
-        {size>900 ?(images.map((step, index) => (
+        {images.map((step, index) => (
           <div key={step.label}>
             {Math.abs(activeStep - index) <= 2 ? (
               <Box
@@ -59,7 +70,7 @@ function SwipeableTextMobileStepper() {
               />
             ) : null}
           </div>
-        ))) : () }
+        ))}
       </AutoPlaySwipeableViews>
       <MobileStepper
         steps={maxSteps}
