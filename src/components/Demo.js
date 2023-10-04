@@ -38,10 +38,15 @@ function SwipeableTextMobileStepper() {
 
   
  const [size,setSize] = React.useState(window.innerWidth);
+ const [imageData,setImageData] = React.useState(images)
  
   const handleStepChange = (step) => {
     setActiveStep(step);
   };
+  React.useEffect(()=>{
+    if(size>=800) setImageData(images)
+    else setImageData(imagess)
+  },[size])
 
   return (
     <Box sx={{ maxWidth: "100%", flexGrow: 1 }}>
@@ -52,7 +57,7 @@ function SwipeableTextMobileStepper() {
         onChangeIndex={handleStepChange}
         enableMouseEvents
       >
-        {images.map((step, index) => (
+        {imageData.map((step, index) => (
           <div key={step.label}>
             {Math.abs(activeStep - index) <= 2 ? (
               <Box
