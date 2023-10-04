@@ -26,7 +26,7 @@ function SwipeableTextMobileStepper() {
   const maxSteps = images.length;
 
   
-
+ const [size,setSize] = React.useState(window.innerWidth);
  
   const handleStepChange = (step) => {
     setActiveStep(step);
@@ -41,7 +41,7 @@ function SwipeableTextMobileStepper() {
         onChangeIndex={handleStepChange}
         enableMouseEvents
       >
-        {(images.map((step, index) => (
+        {size>900 ?(images.map((step, index) => (
           <div key={step.label}>
             {Math.abs(activeStep - index) <= 2 ? (
               <Box
@@ -59,7 +59,7 @@ function SwipeableTextMobileStepper() {
               />
             ) : null}
           </div>
-        )))}
+        ))) : () }
       </AutoPlaySwipeableViews>
       <MobileStepper
         steps={maxSteps}
