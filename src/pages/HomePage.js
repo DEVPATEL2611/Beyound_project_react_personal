@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Demo from '../components/Demo'
 import ImageCrad from '../components/ImageCrad'
+import ProductCard from '../components/ProductCard';
 function HomePage() {
     const [productList,setProductList] = useState(null);
     const getProductList =  ()=>{
@@ -22,7 +23,7 @@ function HomePage() {
         <div style={{display:"flex",flexWrap:"wrap",gap:20,justifyContent:"space-around"}}>
         {
             productList && productList.map((product)=>{
-                return <ImageCrad product={product} key={product.id}/>
+                return <ImageCrad product={product} key={product.id} />
             })
         }
         </div>

@@ -18,16 +18,22 @@ export default function ImgMediaCard(props) {
         image={props.product.displayImage}
       />
       <CardContent>
-        <Typography gutterBottom variant="p" component="p" style={{overflow:"hidden",textOverflow: "ellipsis",fontWeight:"bold",height:"50px",width:"300px"}} >
+        <Typography gutterBottom variant="p" component="p" style={{whiteSpace: "nowrap",overflow:"hidden",textOverflow: "ellipsis",fontWeight:"bold"}} >
          {props.product.name}
         </Typography>
-        <Typography gutterBottom variant="h7" component="h7"  >
-         Price : {props.product.price}
-        </Typography>
+        
       </CardContent>
       <CardActions>
-      
-        <Button size="small" variant='outlined' endIcon={<FavoriteBorderIcon />}>Wishlist</Button>
+        <div style={{display:"flex",justifyContent:"space-between",width:"100%"}}>
+          <div>
+          <Typography gutterBottom variant="h7" component="h7"  >
+            Price : {props.product.price}
+            </Typography>
+          </div>
+        </div>
+        <div>
+          <Button size="small" variant='outlined' endIcon={<FavoriteBorderIcon />}>Wishlist</Button></div>
+        
       </CardActions>
     </Card>
   );
