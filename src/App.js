@@ -2,7 +2,8 @@
 import './App.css';
 import AppHeader from './components/AppHeader';
 import NavBar from './components/NavBar'
-import Demo from './components/Demo'
+import HomePage from './pages/HomePage';
+
 
 function App() {
   return (
@@ -10,8 +11,8 @@ function App() {
       <AppHeader />
   
         <NavBar />
-  
-      <Demo />
+        <HomePage />
+      
     </div>
   );
 }
