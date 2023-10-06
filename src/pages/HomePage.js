@@ -20,7 +20,7 @@ function HomePage() {
   return (
     <div>
         <Demo />
-        <div style={{display:"flex",flexWrap:"wrap",gap:20,justifyContent:"space-around"}}>
+        <div style={{display:"flex",flexWrap:"wrap",gap:20,justifyContent:"space-around",width:"80%",margin:"auto auto",paddingTop:"30px"}}>
         {
             productList && productList.map((product)=>{
                 return <ImageCrad product={product} key={product.id} />

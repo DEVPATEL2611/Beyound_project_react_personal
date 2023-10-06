@@ -3,7 +3,7 @@ import '../styles/ProductCard.css'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 export default function ProductCard(props) {
-  return ( <div className="product-card">
+  return ( <div className="product-card" style={{marginTop:"30px"}}>
 		<div className="badge">Hot</div>
 		<div className="product-tumb">
 			<img src={props.product.displayImage} alt="" />

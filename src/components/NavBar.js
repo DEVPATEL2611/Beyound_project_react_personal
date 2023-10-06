@@ -14,8 +14,9 @@ import MenuItem from '@mui/material/MenuItem';
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Popper from '@mui/material/Popper';
 
-const pages = ['MEN', 'WOMEN', 'COMOBOS' , 'JOGGERS'];
+const pages = ['MEN', 'WOMEN', 'COMOBOS', 'JOGGERS'];
 
 
 function ResponsiveAppBar() {
@@ -38,12 +39,19 @@ function ResponsiveAppBar() {
     setAnchorElNav(null);
   };
 
- 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popper' : undefined;
   return (
-    <AppBar position="static" style={{ background:"white", color : "black"}}>
+    <AppBar position="static" style={{ background: "white", color: "black" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-         
+
           <Typography
             variant="h5"
             noWrap
@@ -122,28 +130,37 @@ function ResponsiveAppBar() {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'black', display: 'block' , fontWeight:"bold" }}
+                sx={{ my: 2, color: 'black', display: 'block', fontWeight: "bold" }}
               >
                 {page}
               </Button>
             ))}
           </Box>
-          <IconButton aria-label="cart">
-                <SearchIcon style={{color:"black"}} />
-            </IconButton>
-           <IconButton aria-label="cart">
-                <FavoriteIcon style={{color:"black"}} />
-            </IconButton>
-        
-   
-              <IconButton aria-label="cart">
-                <StyledBadge badgeContent={2} color="secondary" style={{color:"black"}}>
-                  <ShoppingCartIcon />
-                </StyledBadge>
-             </IconButton>
        
+          <IconButton aria-label="cart">
+            <SearchIcon style={{ color: "black" }} onClick={handleClick} aria-describedby={id} />
+          </IconButton>
          
-        
+          <Popper id={id} open={open} anchorEl={anchorEl} style={{background:"white",width:"380px"}}>
+            <Box sx={{  p:2, bgcolor: '',marginTop:"23px",borderTop:"1px solid gray" }}>
+              <input tyepe="search" placeholder='Search tshirt......' style={{paddingLeft:"20px",height:"35px",background:"white",border:"1px solid gray",width:"260px"}}/>
+              <button style={{height:"35px",background:"black",border:"1px solid black",color:"white",padding:"0px 20px"}}> search </button>
+            </Box>
+          </Popper>
+          
+          <IconButton aria-label="cart">
+            <FavoriteIcon style={{ color: "black" }} />
+          </IconButton>
+
+
+          <IconButton aria-label="cart">
+            <StyledBadge badgeContent={2} color="warning" style={{ color: "black" }}>
+              <ShoppingCartIcon />
+            </StyledBadge>
+          </IconButton>
+
+
+
         </Toolbar>
       </Container>
     </AppBar>
