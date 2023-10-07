@@ -15,6 +15,7 @@ import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Popper from '@mui/material/Popper';
+import {Link} from  'react-router-dom';
 
 const pages = ['MEN', 'WOMEN', 'COMOBOS', 'JOGGERS'];
 
@@ -66,8 +67,8 @@ function ResponsiveAppBar() {
               color: 'black',
               textDecoration: 'none',
             }}
-          >
-            BEYOUNG
+          ><Link to="/" style={{color:"black",textDecoration:"none"}}>BEYOUNG</Link>
+            
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -123,7 +124,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            BEYOUNG
+            <Link to="/" style={{color:"black",textDecoration:"none"}}>BEYOUNG</Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -137,27 +138,31 @@ function ResponsiveAppBar() {
             ))}
           </Box>
        
-          <IconButton aria-label="cart">
+          <IconButton aria-label="search">
             <SearchIcon style={{ color: "black" }} onClick={handleClick} aria-describedby={id} />
           </IconButton>
          
           <Popper id={id} open={open} anchorEl={anchorEl} style={{background:"white",width:"380px"}}>
             <Box sx={{  p:2, bgcolor: '',marginTop:"23px",borderTop:"1px solid gray" }}>
-              <input tyepe="search" placeholder='Search tshirt......' style={{paddingLeft:"20px",height:"35px",background:"white",border:"1px solid gray",width:"260px"}}/>
+              <input tyepe="search" placeholder='Search tshirt......' style={{outline:"none",paddingLeft:"20px",height:"35px",background:"white",border:"1px solid gray",width:"260px"}}/>
               <button style={{height:"35px",background:"black",border:"1px solid black",color:"white",padding:"0px 20px"}}> search </button>
             </Box>
           </Popper>
+          <Link to="/wishlist" style={{color:"black",textDecoration:"none"}}>
+             <IconButton aria-label="wishlist">
+                <FavoriteIcon style={{ color: "black" }} />
+              </IconButton>
+          </Link>
+          <Link to="/cart" style={{color:"black",textDecoration:"none"}}>
+            <IconButton aria-label="cart">
+              <StyledBadge badgeContent={2} color="warning" style={{ color: "black" }}>
+                <ShoppingCartIcon />
+              </StyledBadge>
+            </IconButton>
+          </Link>
+
+
           
-          <IconButton aria-label="cart">
-            <FavoriteIcon style={{ color: "black" }} />
-          </IconButton>
-
-
-          <IconButton aria-label="cart">
-            <StyledBadge badgeContent={2} color="warning" style={{ color: "black" }}>
-              <ShoppingCartIcon />
-            </StyledBadge>
-          </IconButton>
 
 
 
