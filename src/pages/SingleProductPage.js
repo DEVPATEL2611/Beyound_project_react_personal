@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { fetcher } from '../helpers';
+import ProductPage from './Product';
 function SingleProductPage() {
   const {id} = useParams();
   const [sigleProduct,setSingleProduct] = useState([]);
@@ -14,8 +15,7 @@ function SingleProductPage() {
     .catch(err=>console.log(err))
   },[])
   return (
-    
-    <div>SingleProductPage</div>
+    <ProductPage product={sigleProduct} />
   )
 }
 

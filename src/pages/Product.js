@@ -17,7 +17,7 @@ import {
 } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-const ProductPage = () => {
+const ProductPage = (props) => {
   const [selectedSize, setSelectedSize] = useState('M'); // Default selected size
   const [selectedQuantity, setSelectedQuantity] = useState(1); // Default selected quantity
 
@@ -37,21 +37,19 @@ const ProductPage = () => {
             <CardMedia
               component="img"
               alt="Product"
-              height="500"
-              image="https://via.placeholder.com/500x500" // Replace with your product image URL
+              height="700"
+              image={props.product.displayImage} // Replace with your product image URL
             />
           </Card>
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography variant="h4" gutterBottom>
-            Definitely Not Half Sleeve T-Shirt for Men
+            {props.product.name}
           </Typography>
           <Typography variant="h6" gutterBottom>
-            $19.99
+          &#8377;{props.product.price}
           </Typography>
-          <Typography variant="body1" paragraph>
-            High-quality cotton t-shirt designed for comfort and style. Definitely Not logo printed on the front.
-          </Typography>
+          
           <Divider style={{ marginBottom: '20px' }} />
           <Typography variant="h6">Select Size</Typography>
           <Select value={selectedSize} onChange={handleSizeChange} fullWidth style={{ marginBottom: '20px' }}>
@@ -80,17 +78,7 @@ const ProductPage = () => {
           </Button>
           <Divider style={{ marginBottom: '20px' }} />
           <Divider style={{ marginBottom: '20px' }} />
-          <Typography variant="h6">Product Information</Typography>
-          <Typography variant="body1" paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut urna sit amet ante volutpat posuere in
-            blandit metus.
-          </Typography>
-          <Divider style={{ marginBottom: '20px' }} />
-          <Typography variant="h6">Product Description</Typography>
-          <Typography variant="body1" paragraph>
-            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-          </Typography>
-          <Divider style={{ marginBottom: '20px' }} />
+         
           <Typography variant="h6">Product Highlights</Typography>
           <Typography variant="body1" paragraph>
             - Comfortable fit and soft fabric
@@ -102,13 +90,13 @@ const ProductPage = () => {
           <Divider style={{ marginBottom: '20px' }} />
           <Typography variant="h6">Manufacturer</Typography>
           <Typography variant="body1" paragraph>
-            Definitely Not Clothing Co.
+           {props.product.seller.name}
           </Typography>
           
           <Typography variant="h6" gutterBottom>
             Customer Ratings
           </Typography>
-          <Rating name="product-rating" value={4.5} precision={0.5} readOnly />
+          <Rating name="product-rating" value={props.product.ratings} precision={0.5} readOnly />
         </Grid>
       </Grid>
     </Container>
