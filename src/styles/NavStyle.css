@@ -21,4 +21,8 @@
     gap:10px;
     margin-right: 20px;
 }
-
+.logout-btn{
+    border: none;
+    background-color: black;
+    color: White;
+}

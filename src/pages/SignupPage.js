@@ -19,9 +19,7 @@ const SignupPage = () => {
     const [formErrors,setFormErrors] = useState({
         name:'',email:'',password:'',confirmPassword:''
     })
-    const storeToken = (token) =>{
-        localStorage.setItem("token",token);
-    }
+    
     const navigate = useNavigate();
     const handleSignUp = ()=>{
         const isValidEmail = formData.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
@@ -47,8 +45,10 @@ const SignupPage = () => {
                     appType: "ecommerce"
                 })
             },false).then((res)=>{console.log(res)
-            storeToken(res.token)
-              navigate("/login");
+              setTimeout(()=>{
+                navigate("/login");
+              },2000)
+              
           })
             .catch(err => console.log(err))
         }
@@ -135,7 +135,6 @@ const SignupPage = () => {
           }}
         />
       </FormControl>
-
       <Button
         variant="contained"
         color="primary"

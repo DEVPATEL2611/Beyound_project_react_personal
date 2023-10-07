@@ -21,6 +21,7 @@ const LoginPage = () => {
       const storeToken = (token) =>{
         localStorage.setItem("token",token);
     }
+    
     const navigate = useNavigate();
       const handleLogin = ()=>{
         const isValidEmail = formData.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
@@ -40,8 +41,12 @@ const LoginPage = () => {
                   appType: "ecommerce"
               })
           },false).then((res)=>{console.log(res)
-          storeToken(res.token)
-          navigate("/");
+          storeToken(res.token);
+          localStorage.setItem("login",true);
+          setTimeout(()=>{
+            navigate("/");
+          },2000)
+          
         })
           .catch(err => console.log(err))
       }
