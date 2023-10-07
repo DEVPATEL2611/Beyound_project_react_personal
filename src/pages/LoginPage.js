@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useContext, useState} from "react";
 import {
   Paper,
   Typography,
@@ -11,6 +11,7 @@ import {
 import { Email, Lock } from "@mui/icons-material";
 import { fetcher } from "../helpers";
 import { useNavigate } from "react-router";
+import { LoginContext } from "../helpers/LoginContext";
 const LoginPage = () => {
       const [formData,setFormData] = useState({
         email:'',password:''
@@ -21,7 +22,7 @@ const LoginPage = () => {
       const storeToken = (token) =>{
         localStorage.setItem("token",token);
     }
-    
+    const {setIsLogin} = useContext(LoginContext);
     const navigate = useNavigate();
       const handleLogin = ()=>{
         const isValidEmail = formData.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
@@ -42,7 +43,7 @@ const LoginPage = () => {
               })
           },false).then((res)=>{console.log(res)
           storeToken(res.token);
-          localStorage.setItem("login",true);
+          setIsLogin(true);
           setTimeout(()=>{
             navigate("/");
           },2000)

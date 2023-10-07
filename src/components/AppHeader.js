@@ -1,13 +1,15 @@
 import '../styles/NavStyle.css'
 import {Link} from  'react-router-dom';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { useEffect, useState } from 'react';
+import { useEffect, useState,useContext } from 'react';
+import { LoginContext } from "../helpers/LoginContext";
 const AppHeader = ()=>{
-    const [token,setToken] = useState(localStorage.getItem("login"));
+    const {isLogin} = useContext(LoginContext);
+    const [token,setToken] = useState(isLogin);
     useEffect(()=>{
         if(localStorage.getItem("token")) setToken(true)
         else setToken(false)
-    },[localStorage.key("token")])
+    },[isLogin])
     return(<>
         <div className="app-header">
             <div className="app-header-content">
@@ -18,7 +20,6 @@ const AppHeader = ()=>{
                             {token ? (<button className='logout-btn' onClick={()=>{
                                 localStorage.removeItem("token")
                                 setToken(false)
-                                localStorage.setItem("login",false)
                         }}>Logout</button>) : (<Link to="/login" style={{textDecoration:"none",color:"white"}}>
                                 LOG IN
                             </Link>) }
