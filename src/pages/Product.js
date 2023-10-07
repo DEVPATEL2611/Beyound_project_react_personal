@@ -16,6 +16,7 @@ import {
   Input,
 } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { fetcher } from '../helpers';
 
 const ProductPage = (props) => {
   const [selectedSize, setSelectedSize] = useState('M'); // Default selected size
@@ -28,6 +29,16 @@ const ProductPage = (props) => {
   const handleQuantityChange = (event) => {
     setSelectedQuantity(event.target.value);
   };
+  const handCartApi = (id)=>{
+    fetcher(`ecommerce/cart/${id}`,{
+      method:"PATCH-URL",
+      body : JSON.stringify({
+        "quantity" :parseInt(selectedQuantity) 
+      })
+    },localStorage.getItem("token"))
+    .then((res)=>console.log(res))
+    .catch(err=>console.log(err))
+  }
 
   return (
     <Container maxWidth="lg" style={{ marginTop: '50px' }}>
@@ -73,6 +84,7 @@ const ProductPage = (props) => {
             color="primary"
             startIcon={<ShoppingCartIcon />}
             style={{ marginBottom: '20px' }}
+            onClick={()=>handCartApi(props.product._id)}
           >
             Add {selectedQuantity} to Cart
           </Button>
@@ -90,7 +102,7 @@ const ProductPage = (props) => {
           <Divider style={{ marginBottom: '20px' }} />
           <Typography variant="h6">Manufacturer</Typography>
           <Typography variant="body1" paragraph>
-           {props.product.seller.name}
+           
           </Typography>
           
           <Typography variant="h6" gutterBottom>
