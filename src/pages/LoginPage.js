@@ -22,7 +22,7 @@ const LoginPage = () => {
       const storeToken = (token) =>{
         localStorage.setItem("token",token);
     }
-    const {setIsLogin} = useContext(LoginContext);
+    const {setLoginState} = useContext(LoginContext);
     const navigate = useNavigate();
       const handleLogin = ()=>{
         const isValidEmail = formData.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
@@ -43,7 +43,7 @@ const LoginPage = () => {
               })
           },false).then((res)=>{console.log(res)
           storeToken(res.token);
-          setIsLogin(true);
+          setLoginState(true);
           setTimeout(()=>{
             navigate("/");
           },2000)
