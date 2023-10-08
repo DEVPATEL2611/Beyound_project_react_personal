@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   Container,
   Grid,
@@ -17,6 +17,7 @@ import {
 } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { fetcher } from '../helpers';
+import { LoginContext } from '../helpers/LoginContext';
 
 const ProductPage = (props) => {
   const [selectedSize, setSelectedSize] = useState('M'); // Default selected size
@@ -29,14 +30,18 @@ const ProductPage = (props) => {
   const handleQuantityChange = (event) => {
     setSelectedQuantity(event.target.value);
   };
+  const {setCartProduct} = useContext(LoginContext)
   const handCartApi = (id)=>{
     fetcher(`ecommerce/cart/${id}`,{
-      method:"PATCH-URL",
+      method:"PATCH",
       body : JSON.stringify({
         "quantity" :parseInt(selectedQuantity) 
       })
     },localStorage.getItem("token"))
-    .then((res)=>console.log(res))
+    .then((res)=>{console.log(res)
+      setCartProduct(res.results)
+      
+    })
     .catch(err=>console.log(err))
   }
 

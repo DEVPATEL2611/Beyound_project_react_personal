@@ -16,13 +16,14 @@ import { styled } from '@mui/material/styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Popper from '@mui/material/Popper';
 import {Link} from  'react-router-dom';
+import { LoginContext } from '../helpers/LoginContext';
 
 const pages = ['MEN', 'WOMEN', 'COMOBOS', 'JOGGERS'];
 
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-
+  const {cartproduct} = React.useContext(LoginContext)
   const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
       right: -3,
@@ -45,7 +46,7 @@ function ResponsiveAppBar() {
   const handleClick = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
-
+  
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popper' : undefined;
   return (
@@ -155,9 +156,10 @@ function ResponsiveAppBar() {
           </Link>
           <Link to="/cart" style={{color:"black",textDecoration:"none"}}>
             <IconButton aria-label="cart">
-              <StyledBadge badgeContent={2} color="warning" style={{ color: "black" }}>
-                <ShoppingCartIcon />
-              </StyledBadge>
+            <ShoppingCartIcon />
+              {localStorage.getItem("token") && <StyledBadge badgeContent={cartproduct} color="warning" style={{ color: "black" }}></StyledBadge>}
+               
+              
             </IconButton>
           </Link>
 
