@@ -2,7 +2,7 @@
 import './App.css';
 import AppHeader from './components/AppHeader';
 import NavBar from './components/NavBar'
-import Auth from './components/Auth';
+
 import HomePage from './pages/HomePage';
 import { Routes, Route } from 'react-router-dom';
 import WishListPage from './pages/WishListPage';
@@ -11,7 +11,7 @@ import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
 import { ContextProvider } from './helpers/LoginContext';
 import SingleProductPage from './pages/SingleProductPage';
-import Product from './pages/Product';
+
 
 function App() {
   return (
