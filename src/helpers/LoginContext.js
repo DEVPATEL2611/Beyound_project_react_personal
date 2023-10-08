@@ -4,7 +4,7 @@ const LoginContext = createContext();
 
 const ContextProvider = ({children})=>{
     const [isLogin,setIsLogin] = useState(localStorage.getItem("loginState")||true)
-    const [cartproduct,setCartProduct] = useState(localStorage.getItem("cart")||0);
+    const [cartproduct,setCartProduct] = useState(localStorage.getItem("cart"));
     function addToCart(num){
         setCartProduct(num);
         localStorage.setItem("cart",num);
@@ -12,9 +12,8 @@ const ContextProvider = ({children})=>{
     function setLoginState(loginState){
         setIsLogin(loginState);
         localStorage.setItem("loginState",loginState);
-        addToCart()
+        addToCart(localStorage.getItem("cart"))
         if(loginState===false){
-            addToCart("");
             localStorage.removeItem("token");
         }
     }

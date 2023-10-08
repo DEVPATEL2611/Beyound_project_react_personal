@@ -17,11 +17,11 @@ import {
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { fetcher } from '../helpers';
 import { LoginContext } from '../helpers/LoginContext';
-
+import { useNavigate } from 'react-router-dom';
 const ProductPage = (props) => {
   const [selectedSize, setSelectedSize] = useState('M'); // Default selected size
   const [selectedQuantity, setSelectedQuantity] = useState(1); // Default selected quantity
-
+  const navigate = useNavigate();
   const handleSizeChange = (event) => {
     setSelectedSize(event.target.value);
   };
@@ -31,17 +31,21 @@ const ProductPage = (props) => {
   };
   const {setCartProduct} = useContext(LoginContext)
   const handCartApi = (id)=>{
-    fetcher(`ecommerce/cart/${id}`,{
-      method:"PATCH",
-      body : JSON.stringify({
-        "quantity" :parseInt(selectedQuantity) 
+    if(localStorage.getItem("token")){
+      fetcher(`ecommerce/cart/${id}`,{
+        method:"PATCH",
+        body : JSON.stringify({
+          "quantity" :parseInt(selectedQuantity) 
+        })
+      },localStorage.getItem("token"))
+      .then((res)=>{console.log(res)
+        setCartProduct(res.results)
+        
       })
-    },localStorage.getItem("token"))
-    .then((res)=>{console.log(res)
-      setCartProduct(res.results)
-      
-    })
-    .catch(err=>console.log(err))
+      .catch(err=>console.log(err))
+    }else{
+      navigate("/login");
+    }
   }
 
   return (
