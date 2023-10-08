@@ -6,7 +6,8 @@ import { LoginContext } from "../helpers/LoginContext";
 const AppHeader = ()=>{
     
     const {isLogin,setLoginState} = useContext(LoginContext);
-
+    setLoginState(localStorage.getItem("loginState"))
+    
     return(<>
         <div className="app-header">
             <div className="app-header-content">
@@ -16,6 +17,7 @@ const AppHeader = ()=>{
                         <div>
                             {isLogin && localStorage.getItem("token") ? (<button className='logout-btn' onClick={()=>{
                                 setLoginState(false)
+                                
                         }}>Logout</button>) : (<Link to="/login" style={{textDecoration:"none",color:"white"}}>
                                 LOG IN
                             </Link>) }

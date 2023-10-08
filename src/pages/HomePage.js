@@ -23,7 +23,7 @@ function HomePage() {
         },auth).then((res)=>setProductList(res.data))
         .catch((err)=>console.log(err))
     },[])
-    console.log(productList)
+    
   return (
     <div>
         <Demo />

@@ -46,7 +46,7 @@ const LoginPage = () => {
           setLoginState(true);
           setTimeout(()=>{
             navigate("/");
-          },2000)
+          },500)
           
         })
           .catch(err => console.log(err))

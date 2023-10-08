@@ -23,7 +23,7 @@ const pages = ['MEN', 'WOMEN', 'COMOBOS', 'JOGGERS'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const {cartproduct,isLogin} = React.useContext(LoginContext)
+  const {cartproduct} = React.useContext(LoginContext)
   const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
       right: -3,
@@ -156,10 +156,9 @@ function ResponsiveAppBar() {
           </Link>
           <Link to="/cart" style={{color:"black",textDecoration:"none"}}>
             <IconButton aria-label="cart">
-            <ShoppingCartIcon />
-              {isLogin && <StyledBadge badgeContent={cartproduct} color="warning" style={{ color: "black" }}></StyledBadge>}
+            <ShoppingCartIcon  style={{color:"black",textDecoration:"none"}}/>
+              {localStorage.getItem("token") && <StyledBadge badgeContent={cartproduct} color="warning" style={{ color: "black" }}></StyledBadge>}
                
-              
             </IconButton>
           </Link>
 
