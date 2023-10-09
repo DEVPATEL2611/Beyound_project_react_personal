@@ -11,6 +11,7 @@ import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
 import { ContextProvider } from './helpers/LoginContext';
 import SingleProductPage from './pages/SingleProductPage';
+import PrivateRoute from './helpers/PrivateRoute';
 
 
 function App() {
@@ -23,9 +24,10 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/wishlist" element={<WishListPage />} />
-          <Route path="/cart" element={<CartPage />} />
+          <Route path="/wishlist"element={<PrivateRoute  element={<WishListPage />} />} />
+          <Route path="/cart" element={<PrivateRoute  element={<CartPage />} />} />
           <Route path="/products/:id" element={<SingleProductPage />} />
+          
         </Routes>
       </div>
     </ContextProvider>
