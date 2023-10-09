@@ -4,7 +4,7 @@ import { fetcher } from ".";
 const LoginContext = createContext();
 
 const ContextProvider = ({children})=>{
-    const [isLogin,setIsLogin] = useState(localStorage.getItem("loginState"))
+    const [isLogin,setIsLogin] = useState(localStorage.getItem("token")?true:false)
     const [cartproduct,setCartProduct] = useState('');
     
     function fetchCartFromAPI(){

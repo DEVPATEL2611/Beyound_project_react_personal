@@ -1,10 +1,16 @@
 import '../styles/NavStyle.css'
 import {Link} from  'react-router-dom';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { LoginContext } from "../helpers/LoginContext";
 const AppHeader = ()=>{
-    
+    useEffect(()=>{
+        if(localStorage.getItem("token")){
+            (localStorage.setItem("loginState",true))
+        }else{
+            (localStorage.setItem("loginState",false))
+        }    
+    },[])
     const {isLogin,setLoginState} = useContext(LoginContext);
     setLoginState(localStorage.getItem("loginState"))
     
