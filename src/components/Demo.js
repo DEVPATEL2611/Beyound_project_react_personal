@@ -37,7 +37,7 @@ function SwipeableTextMobileStepper() {
   const maxSteps = images.length;
 
   
- const [size,setSize] = React.useState(window.innerWidth);
+ const size =window.innerWidth;
  const [imageData,setImageData] = React.useState(images)
  
   const handleStepChange = (step) => {

@@ -9,7 +9,7 @@ const ContextProvider = ({children})=>{
     
     function fetchCartFromAPI(){
         fetcher(`ecommerce/cart`)
-          .then((res)=>{console.log(res)
+          .then((res)=>{
             addToCart(res.results)
           })
           .catch(err=>console.log(err))

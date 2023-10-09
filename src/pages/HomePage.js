@@ -2,26 +2,26 @@ import React, { useEffect, useState } from 'react'
 import Demo from '../components/Demo'
 import ImageCrad from '../components/ImageCrad'
 import { fetcher } from '../helpers';
-import { Link } from 'react-router-dom';
+
 
 function HomePage() {
     const [productList,setProductList] = useState(null);
-    // const getProductList =  ()=>{
-    //     fetch("https://academics.newtonschool.co/api/v1/ecommerce/clothes/products?limit=150",{
-    //         headers : {
-    //             projectID : "f1set4c"
-    //         }
-    //     }).then((response)=>response.json())
-    //     .then(res=>setProductList(res.data))
-    //     .catch(e=>console.log(e));
-    // }
-
-    useEffect(()=>{
-        const auth = localStorage.getItem("token");
-        fetcher("ecommerce/clothes/products?limit=150",{
-            method:"GET"
-        },auth).then((res)=>setProductList(res.data))
+    function loadProducts(){
+        fetcher("ecommerce/clothes/products?limit=150").then((res)=>setProductList(res.data))
         .catch((err)=>console.log(err))
+    }
+    function fetchFavourites(){
+          fetcher("ecommerce/wishlist")
+        .then((res)=>{console.log(res.data)
+            const dd = res.data.items;
+            console.log(dd)
+             dd.map((pID)=>{return console.log(pID._id)})
+        })
+        .catch(err=>console.log(err))
+    }
+    useEffect(()=>{
+     loadProducts()
+    fetchFavourites()
     },[])
     
   return (
