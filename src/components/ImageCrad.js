@@ -8,10 +8,12 @@ import Typography from '@mui/material/Typography';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { ClassNames } from '@emotion/react';
+import { Link } from 'react-router-dom';
 
 export default function ImgMediaCard(props) {
   return (
     <Card sx={{ maxWidth: 345 ,marginBottom:2 }} className='cardProduct'>
+      <Link to={`/products/${props.product._id}`} style={{color:"black",textDecoration:"none"}} >
       <CardMedia
         component="img"
         alt="green iguana"
@@ -19,11 +21,12 @@ export default function ImgMediaCard(props) {
         image={props.product.displayImage}
       />
       <CardContent>
-        <Typography gutterBottom variant="p" component="p" style={{whiteSpace: "nowrap",overflow:"hidden",textOverflow: "ellipsis",fontWeight:"bold"}} >
+        <Typography gutterBottom variant="p" component="p" style={{whiteSpace: "nowrap",overflow:"hidden",textOverflow: "ellipsis",fontWeight:"bold",color:"black",textDecoration:"none"}} >
          {props.product.name}
         </Typography>
         
       </CardContent>
+      </Link>
       <CardActions>
         <div style={{display:"flex",justifyContent:"space-between",width:"100%"}}>
           <div>

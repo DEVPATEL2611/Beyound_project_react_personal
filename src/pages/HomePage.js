@@ -30,7 +30,7 @@ function HomePage() {
         <div style={{display:"flex",flexWrap:"wrap",gap:20,justifyContent:"space-around",width:"80%",margin:"auto auto",paddingTop:"30px"}}>
         {
             productList && productList.map((product)=>{
-                return <Link to={`/products/${product._id}`}><ImageCrad product={product} key={product._id} /></Link>
+                return <ImageCrad product={product} key={product._id} />
             })
         }
         </div>
