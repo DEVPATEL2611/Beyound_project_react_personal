@@ -11,15 +11,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { fetcher } from '../helpers';
 
 export default function ImgMediaCard(props) {
-  const [isToWishList,setIsToWishList] = useState(false);
+  const [isToWishList,setIsToWishList] = useState(props.isWishListed);
   const navigate = useNavigate();
-  // useEffect(()=>{
-  //   fetcher("ecommerce/wishlist")
-  //   .then((res)=>{console.log(res)
-      
-  //     })
-  //   .catch(err=>console.log(err))
-  // },[])
   
   function addtoWishlistAPI(id){
    if(localStorage.getItem("token")){
@@ -75,8 +68,9 @@ export default function ImgMediaCard(props) {
           </div>
         </div>
         <div>
-          <Button endIcon={<FavoriteBorderIcon />} onClick={()=>addtoWishlistAPI(props.product._id)}>ADD</Button>
-         <Button endIcon={<FavoriteIcon  /> } onClick={()=>removeFromoWishlistAPI(props.product._id)}>Remove </Button>
+          {!isToWishList ? ( <Button endIcon={<FavoriteBorderIcon />} onClick={()=>addtoWishlistAPI(props.product._id)}>ADD</Button>) : (<Button endIcon={<FavoriteIcon  /> } onClick={()=>removeFromoWishlistAPI(props.product._id)}>Remove </Button>)}
+          
+         
        
         </div>
       </CardActions>
