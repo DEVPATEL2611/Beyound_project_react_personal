@@ -19,14 +19,14 @@ const WishlistComponent = () => {
   function fetchFavourites(){
     let obj = {};
       fetcher("ecommerce/wishlist")
-    .then((res)=>{console.log(res.data)
+      .then((res)=>{console.log(res.data)
         //const dd = res.data.items;
         setFavvProducts(res.data.items)
-
     })
     .catch(err=>console.log(err))
   }
   console.log(favvProducts)
+  
   useEffect(()=>{
   fetchFavourites()
   },[favvProducts])
@@ -74,7 +74,7 @@ const onAddToCart = (id)=>{
       
     <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
       
-      {favvProducts.map((product, index) => (
+      {favvProducts && favvProducts.map((product, index) => (
         <Card key={index} style={{ margin: 20, width: 300 }}>
           <CardMedia
             component="img"
