@@ -1,4 +1,4 @@
-import  React,{useEffect, useState} from 'react';
+import  React,{useContext, useEffect, useState} from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -9,10 +9,12 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Link, useNavigate } from 'react-router-dom';
 import { fetcher } from '../helpers';
+import { LoginContext } from '../helpers/LoginContext';
 
 export default function ImgMediaCard(props) {
   const [isToWishList,setIsToWishList] = useState(props.isWishListed);
   const navigate = useNavigate();
+  const {setWishListProducts} = useContext(LoginContext);
   
   function addtoWishlistAPI(id){
    if(localStorage.getItem("token")){
@@ -24,6 +26,7 @@ export default function ImgMediaCard(props) {
     })
     .then((res)=>{console.log(res)
       setIsToWishList(true);
+      setWishListProducts(res.data.items)
       })
     .catch(err=>console.log(err))
    }else{
@@ -36,6 +39,7 @@ export default function ImgMediaCard(props) {
         method:"DELETE"})
       .then((res)=>{console.log(res)
         setIsToWishList(false);
+        setWishListProducts(res.data.items)
         })
       .catch(err=>console.log(err))
     }else{

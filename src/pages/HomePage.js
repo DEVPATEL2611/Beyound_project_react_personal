@@ -1,34 +1,49 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Demo from '../components/Demo'
 import ImageCrad from '../components/ImageCrad'
 import { fetcher } from '../helpers';
+import { LoginContext } from '../helpers/LoginContext';
 
 
 function HomePage() {
     const [productList,setProductList] = useState(null);
     const [wishListObj,setWishListObj] = useState({});
-    
+    const {wishlistProducts,setWishListProducts} = useContext(LoginContext);
     function loadProducts(){
-        fetcher("ecommerce/clothes/products?limit=150").then((res)=>setProductList(res.data))
+        fetcher("ecommerce/clothes/products?limit=50").then((res)=>setProductList(res.data))
         .catch((err)=>console.log(err))
     }
     function fetchFavourites(){
-        let obj = {};
+        if(localStorage.getItem("token")){
+            
           fetcher("ecommerce/wishlist")
-        .then((res)=>{console.log(res.data)
+          .then((res)=>{console.log(res.data)
             //const dd = res.data.items;
-            console.log(res)
-            res.data.items.forEach((item)=>{
+            setWishListProducts(res.data.items);
+        })
+        .catch(err=>console.log(err))
+        }
+    }
+    function settingWishlistProp(){
+        let obj = {};
+        if(localStorage.getItem("token")){
+            wishlistProducts.forEach((item)=>{
                 obj[item.products._id] = true;
             })
             setWishListObj(obj);
-        })
-        .catch(err=>console.log(err))
+        }else{
+            setWishListObj(obj)
+        }
+       
     }
+
     useEffect(()=>{
-     loadProducts()
-    fetchFavourites()
+        loadProducts()
+        fetchFavourites()
     },[])
+    useEffect(()=>{
+        settingWishlistProp();
+    },[wishlistProducts])
     
   return (
     <div>
@@ -39,6 +54,7 @@ function HomePage() {
                 return <ImageCrad product={product} key={product._id} isWishListed={!!wishListObj[product._id]} />
             })
         }
+        
         </div>
     </div>
   )

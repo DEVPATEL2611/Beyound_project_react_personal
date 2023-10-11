@@ -20,7 +20,7 @@ const CartComponent = ({ products }) => {
       .catch(err=>console.log(err))
 }
 useEffect(()=>{
-  fetchCartFromAPI();
+  
 })
 console.log(cart)
   return (

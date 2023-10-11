@@ -14,28 +14,27 @@ import { fetcher } from "../helpers";
 import { LoginContext } from "../helpers/LoginContext";
 
 const WishlistComponent = () => {
-  const [favvProducts,setFavvProducts] = useState([]);
+
   const {setCartProduct} = useContext(LoginContext);
-  function fetchFavourites(){
-    let obj = {};
-      fetcher("ecommerce/wishlist")
-      .then((res)=>{console.log(res.data)
-        //const dd = res.data.items;
-        setFavvProducts(res.data.items)
-    })
-    .catch(err=>console.log(err))
-  }
-  console.log(favvProducts)
+  const {wishlistProducts,setWishListProducts} = useContext(LoginContext);
+  // useEffect(()=>{
+  //   fetchFavourites()
+  //   },[favvProducts])
+  // function fetchFavourites(){
+  //   if(localStorage.getItem("token")){
+  //     setFavvProducts(wishlistProducts);
+  //   }
+  // }
+  // console.log(favvProducts)
   
-  useEffect(()=>{
-  fetchFavourites()
-  },[favvProducts])
+  
 
 const onRemoveFromWishlist = (id)=>{
   if(localStorage.getItem("token")){
     fetcher(`ecommerce/wishlist/${id}`,{
       method:"DELETE"})
     .then((res)=>{console.log(res)
+      setWishListProducts(res.data.items);
       })
     .catch(err=>console.log(err))
   }
@@ -54,6 +53,7 @@ const onAddToCart = (id)=>{
     .catch(err=>console.log(err))
   }
 }
+console.log(wishlistProducts)
   return (
     <Paper
       elevation={3}
@@ -66,6 +66,7 @@ const onAddToCart = (id)=>{
         background: "#ffffff",
         borderRadius: 10,
         boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+        height:"100%"
       }}
     >
       <Typography variant="h4" style={{ marginBottom: 20, color: "#000000" }}>
@@ -74,7 +75,7 @@ const onAddToCart = (id)=>{
       
     <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
       
-      {favvProducts && favvProducts.map((product, index) => (
+      {wishlistProducts && wishlistProducts.map((product, index) => (
         <Card key={index} style={{ margin: 20, width: 300 }}>
           <CardMedia
             component="img"
@@ -110,6 +111,9 @@ const onAddToCart = (id)=>{
           </CardActions>
         </Card>
       ))}
+      {/* {wishlistProducts.length===0 && <Typography variant="h4" style={{ marginBottom: 20, color: "#000000" }}>
+       Please add products to wishlist
+      </Typography> } */}
     </div>
     </Paper>
   );
