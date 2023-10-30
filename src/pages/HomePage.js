@@ -28,7 +28,7 @@ function HomePage() {
         let obj = {};
         if(localStorage.getItem("token")){
             wishlistProducts.forEach((item)=>{
-                obj[item.products._id] = true;
+                obj[item?.products?._id] = true;
             })
             setWishListObj(obj);
         }else{

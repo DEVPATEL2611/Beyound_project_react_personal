@@ -79,16 +79,16 @@ console.log(wishlistProducts)
         <Card key={index} style={{ margin: 20, width: 300 }}>
           <CardMedia
             component="img"
-            alt={product.products.name}
+            alt={product?.products?.name}
             height="350"
-            image={product.products.displayImage}
+            image={product?.products?.displayImage}
           />
           <CardContent>
             <Typography variant="h6" gutterBottom style={{whiteSpace: "nowrap",overflow:"hidden",textOverflow: "ellipsis"}}>
-              {product.products.name}
+              {product?.products?.name}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              ${product.products.price}
+              ${product?.products?.price}
             </Typography>
           </CardContent>
           <CardActions style={{ justifyContent: "space-between" }}>
@@ -97,14 +97,14 @@ console.log(wishlistProducts)
               variant="contained"
               color="primary"
               startIcon={<AddShoppingCart />}
-              onClick={() => onAddToCart(product.products._id)}
+              onClick={() => onAddToCart(product?.products?._id)}
             >
               Add to Cart
             </Button>
             <IconButton
               color="primary"
               aria-label="Remove from Wishlist"
-              onClick={() => onRemoveFromWishlist(product.products._id)}
+              onClick={() => onRemoveFromWishlist(product?.products?._id)}
             >
               <DeleteOutline />
             </IconButton>

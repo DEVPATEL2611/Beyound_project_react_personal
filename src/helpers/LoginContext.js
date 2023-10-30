@@ -6,7 +6,7 @@ const LoginContext = createContext();
 const ContextProvider = ({children})=>{
     const [isLogin,setIsLogin] = useState(localStorage.getItem("token")?true:false)
     const [cartproduct,setCartProduct] = useState('');
-    const [wishlistProducts,setWishListProducts] = useState('');
+    const [wishlistProducts,setWishListProducts] = useState([]);
     function fetchCartFromAPI(){
         fetcher(`ecommerce/cart`)
           .then((res)=>{
@@ -41,7 +41,7 @@ const ContextProvider = ({children})=>{
         }   
     }
     function wishlistEvent(obj){
-        setWishListProducts(obj);
+        setWishListProducts([...wishlistProducts,obj]);
         localStorage.setItem("wislist",obj);
     }
     
